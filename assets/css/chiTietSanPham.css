@@ -1,0 +1,5 @@
+.details-section {
+    border: 1px solid #ddd; /* Màu và kích thước của viền */
+    padding: 15px; /* Khoảng cách giữa nội dung và viền */
+    border-radius: 5px; /* Đường cong góc của viền */
+}

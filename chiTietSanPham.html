@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đơn Hàng - Phone Store</title>
+    <!-- Link CSS Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Link CSS tùy chỉnh -->
+    <link rel="stylesheet" href="./assets/css/chiTietSanPham.css"/>
+    <link rel="stylesheet" href="./assets/css/dungChung.css">
+    <script src="./js/dungChung.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Navbar -->
+      <script>addHeader()</script>
+
+
+
+      <!-- Content -->
+      <div class="container mt-4">
+        <div class="row">
+          <!-- Thông tin sản phẩm -->
+          <div class="col-md-7">
+            <img
+              src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s23-128gb_3_.png"
+              class="img-fluid"
+              alt="Ảnh sản phẩm"
+            />
+
+            <!-- Thêm các thông tin khác về sản phẩm -->
+          </div>
+          
+          <div class="col-md-5">
+            <h2>Tên Sản Phẩm</h2>
+            <p>Giá: $1000.00</p>
+            <div class="mt-3">
+              <button class="btn btn-primary mr-2" onclick="addToCart()">
+                Thêm vào giỏ hàng
+              </button>
+              <button class="btn btn-success" onclick="buyNow()">Mua hàng</button>
+            </div>
+
+            <table class="table table-striped details-section">
+              <h3>Thông Tin Chi Tiết</h3>
+              <tbody>
+                <tr>
+                  <th scope="row">Kích Thước Màn Hình</th>
+                  <td>6.2 inch</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dung Lượng RAM</th>
+                  <td>8GB</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dung Lượng Lưu Trữ</th>
+                  <td>128GB</td>
+                </tr>
+                <tr>
+                  <th scope="row">Màn Hình</th>
+                  <td>6.2 inch, Full HD+</td>
+                </tr>
+                <tr>
+                  <th scope="row">Công Nghệ Màn Hình</th>
+                  <td>Super AMOLED</td>
+                </tr>
+                <tr>
+                  <th scope="row">Độ Phân Giải Màn Hình</th>
+                  <td>1080 x 2340 pixels</td>
+                </tr>
+
+                <!-- Thêm các dòng khác tùy thuộc vào thông tin bạn muốn hiển thị -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Chi tiết sản phẩm -->
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <h3>Chi Tiết Sản Phẩm</h3>
+            <p>Bài viết giới thiệu về sản phẩm...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
