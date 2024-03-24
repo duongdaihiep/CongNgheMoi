@@ -118,6 +118,9 @@ header > .nav{
 
 /* begin footer  */
 .footer {
+    /* position: fixed;
+    bottom: 0;
+    width: 100%; */
     background-color: #343a40; /* Màu nền của footer */
     color: #ffffff; /* Màu chữ của footer */
     padding: 20px 0; /* Khoảng cách giữa nội dung và mép của footer */

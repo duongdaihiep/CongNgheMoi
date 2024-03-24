@@ -11,7 +11,7 @@ function addHeader(){
             </div>
             <div class="nav">
                 <h2 class="header-logo text-white ">
-                    PhoneStar
+                    <a class="header-logo text-white " href="./index.html">PhoneStar</a>
                     <i class="fa-regular fa-star"></i>                
                 </h2>
                 <div class="nav-list category text-white">
@@ -26,8 +26,9 @@ function addHeader(){
                 </form>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal" >
-                        Giỏ hàng </button>
+                        <button type="button" class="btn btn-primary" >
+                        <a class=" text-white" href="./gioHang.html">Giỏ hàng</a>
+                        </button>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-no-active text-white" data-toggle="modal" data-target="#loginModal">
