@@ -37,7 +37,8 @@ function addHeader(){
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn text-white" data-toggle="modal" data-target="#loginModal">
-                        Tài Khoản<i class="text-white fa-regular fa-user" style="margin-left:12px"></i>
+                        <a class=" text-white" href="./dangnhap.html">Tài Khoản</a>
+                        <i class="text-white fa-regular fa-user" style="margin-left:12px"></i>
                         </button>
                         
                     </li>
