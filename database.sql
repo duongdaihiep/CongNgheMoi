@@ -44,14 +44,6 @@ VALUES
     ('Realme', 'GT Master Edition', 10990000, 6.43, 6, 128, 'Super AMOLED', '1080x2400 pixels', '64 MP + 8 MP + 2 MP', '6.43 inches', 'Android 11', 'Snapdragon 778G', '128 GB', '6 GB', '5G', 'Dual SIM', 25, 'Master Edition with suitcase-inspired design'),
     ('Realme', 'Narzo 30', 4990000, 6.5, 4, 128, 'IPS LCD', '1080x2400 pixels', '48 MP + 2 MP + 2 MP', '6.5 inches', 'Android 10', 'Mediatek Helio G95', '128 GB', '4 GB', '4G', 'Dual SIM', 20, 'Budget-friendly option with gaming focus'),
     ('Realme', 'C25', 3490000, 6.5, 4, 64, 'IPS LCD', '720x1600 pixels', '13 MP + 2 MP + 2 MP', '6.5 inches', 'Android 10', 'Mediatek Helio G70', '64 GB', '4 GB', '4G', 'Dual SIM', 15, 'Entry-level device with large battery'),
--- Thêm dữ liệu cho 3 sản phẩm Asus ROG vào bảng products
-    ('Asus ROG', 'ROG Phone 6 Pro', 29990000, 6.59, 16, 512, 'AMOLED', '1080x2340 pixels', '64 MP + 13 MP + 5 MP + 2 MP', '6.59 inches', 'Android 11', 'Snapdragon 8cx Gen 3', '512 GB', '16 GB', '5G', 'Dual SIM', 20, 'Gaming phone with high-end specs and accessories'),
-    ('Asus ROG', 'ROG Phone 5s', 21990000, 6.78, 16, 256, 'AMOLED', '1080x2448 pixels', '64 MP + 13 MP + 5 MP', '6.78 inches', 'Android 11', 'Snapdragon 888+', '256 GB', '16 GB', '5G', 'Dual SIM', 15, 'Gaming-centric flagship with AirTrigger buttons'),
-    ('Asus ROG', 'ROG Phone 5s Pro', 24990000, 6.78, 18, 512, 'AMOLED', '1080x2448 pixels', '64 MP + 13 MP + 5 MP', '6.78 inches', 'Android 11', 'Snapdragon 888+', '512 GB', '18 GB', '5G', 'Dual SIM', 10, 'Pro variant with additional gaming features'),
--- Thêm dữ liệu cho 3 sản phẩm HTC vào bảng products
-    ('HTC', 'U20 5G', 7990000, 6.8, 8, 256, 'IPS LCD', '1080x2400 pixels', '48 MP + 8 MP + 2 MP + 2 MP', '6.8 inches', 'Android 10', 'Snapdragon 765G', '256 GB', '8 GB', '5G', 'Dual SIM', 15, 'Mid-range 5G smartphone with large display'),
-    ('HTC', 'Desire 21 Pro 5G', 5490000, 6.7, 6, 128, 'IPS LCD', '1080x2400 pixels', '48 MP + 8 MP + 2 MP + 2 MP', '6.7 inches', 'Android 10', 'Snapdragon 690', '128 GB', '6 GB', '5G', 'Dual SIM', 20, 'Budget-friendly 5G device with modern design'),
-    ('HTC', 'Wildfire E3', 2490000, 6.5, 4, 64, 'IPS LCD', '720x1600 pixels', '13 MP + 2 MP + 2 MP', '6.5 inches', 'Android 10', 'Mediatek Helio P22', '64 GB', '4 GB', '4G', 'Dual SIM', 25, 'Entry-level smartphone with decent specifications'),
 -- Thêm dữ liệu cho 3 sản phẩm Nokia vào bảng products
     ('Nokia', '8.3 5G', 9990000, 6.81, 8, 128, 'IPS LCD', '1080x2400 pixels', '64 MP + 12 MP + 2 MP + 2 MP', '6.81 inches', 'Android 10', 'Snapdragon 765G', '128 GB', '8 GB', '5G', 'Dual SIM', 18, 'Mid-range 5G Nokia smartphone with PureDisplay'),
     ('Nokia', '5.4', 3490000, 6.39, 4, 64, 'IPS LCD', '720x1560 pixels', '48 MP + 5 MP + 2 MP + 2 MP', '6.39 inches', 'Android 10', 'Snapdragon 662', '64 GB', '4 GB', '4G', 'Dual SIM', 25, 'Budget-friendly Nokia phone with quad-camera setup'),
@@ -64,7 +56,7 @@ CREATE TABLE user (
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    phone_number VARCHAR(10) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL UNIQUE,
     full_name VARCHAR(255),
     date_of_birth DATE,
     gender ENUM('Male', 'Female', 'Other'),
@@ -74,13 +66,18 @@ CREATE TABLE user (
     is_active BOOLEAN DEFAULT 0,
     role ENUM('admin', 'guest', 'employee', 'store_owner') DEFAULT 'guest'
 );
- -- tạo bảng danh mục
- CREATE TABLE category (
-    category_id INT PRIMARY KEY AUTO_INCREMENT,
-    category_name VARCHAR(255) NOT NULL,
-    parent_category_id INT,
-    [description] TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (parent_category_id) REFERENCES category(category_id)
-);
+ -- dữ liệu bảng user
+ INSERT INTO user (username, password, email, phone_number, full_name, date_of_birth, gender, address, last_login, is_active, role) VALUES
+ ('admin', 'password1234', 'john@example.com', '1234567890', 'John Doe', '1990-05-15', 'Male', '123 Main Street, City, Country', '2024-04-10 12:30:00', 1, 'admin'),
+('jane_smith', 'password1234', 'jane@example.com', '9876543210', 'Jane Smith', '1985-08-25', 'Female', '456 Elm Street, City, Country', '2024-04-11 09:45:00', 1, 'employee'),
+('alex_wilson', 'password1234', 'alex@example.com', '5551234567', 'Alex Wilson', '1995-02-12', 'Other', '789 Oak Street, City, Country', NULL, 0, 'guest'),
+('customer1', 'password123', 'customer1@example.com', '1111111111', 'Customer One', '1992-03-20', 'Female', '123 Park Avenue, City, Country', NULL, 1, 'guest'),
+('customer2', 'password456', 'customer2@example.com', '2222222222', 'Customer Two', '1988-07-12', 'Female', '456 Maple Street, City, Country', NULL, 1, 'guest'),
+('customer3', 'password789', 'customer3@example.com', '3333333333', 'Customer Three', '1990-11-05', 'Female', '789 Pine Road, City, Country', NULL, 1, 'guest'),
+('customer4', 'password123', 'customer4@example.com', '4444444444', 'Customer Four', '1985-05-28', 'Female', '321 Oak Lane, City, Country', NULL, 1, 'guest'),
+('customer5', 'password456', 'customer5@example.com', '5555555555', 'Customer Five', '1996-09-15', 'Female', '543 Cedar Court, City, Country', NULL, 1, 'guest'),
+('customer6', 'password789', 'customer6@example.com', '6666666666', 'Customer Six', '1994-12-10', 'Female', '987 Elm Drive, City, Country', NULL, 1, 'guest'),
+('customer7', 'password123', 'customer7@example.com', '7777777777', 'Customer Seven', '1987-02-18', 'Female', '654 Birch Avenue, City, Country', NULL, 1, 'guest'),
+('customer8', 'password456', 'customer8@example.com', '8888888888', 'Customer Eight', '1991-06-22', 'Female', '321 Pine Street, City, Country', NULL, 1, 'guest'),
+('customer9', 'password789', 'customer9@example.com', '9999999999', 'Customer Nine', '1989-10-30', 'Female', '876 Maple Road, City, Country', NULL, 1, 'guest'),
+('customer10', 'password123', 'customer10@example.com', '1010101010', 'Customer Ten', '1993-04-25', 'Female', '345 Cedar Lane, City, Country', NULL, 1, 'guest');

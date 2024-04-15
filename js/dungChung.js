@@ -31,8 +31,8 @@ function addHeader(){
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-no-active text-white" data-toggle="modal" data-target="#loginModal">
-                        Đơn Hàng
+                        <button type="button" class="btn btn-no-active text-white" >
+                        <a class=" text-white" href="./donHang.html">Đơn Hàng</a>
                         </button>
                     </li>
                     <li class="nav-item">

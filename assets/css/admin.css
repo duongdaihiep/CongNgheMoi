@@ -5,7 +5,7 @@
   padding: 0; /* Loại bỏ padding mặc định */
 }
 
-.nav-item {
+.nav-tabs .nav-item {
   flex: 1; /* Các nav-item sẽ chiếm phần bằng nhau của không gian trong flex container */
   text-align: center; /* Căn giữa nội dung của mỗi nav-item */
 }
@@ -38,4 +38,7 @@
 .product-overlay img {
   max-width: 80%;
   max-height: 80%;
+}
+.btn:hover {
+  background-color: #0056b3;
 }
