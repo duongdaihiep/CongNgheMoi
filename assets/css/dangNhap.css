@@ -1,0 +1,51 @@
+.form-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc; /* Đường viền cho form */
+    border-top: 3px solid #007bff; /* Đường viền trên */
+    border-radius: 5px; /* Độ cong của góc */
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-top: -25px; /* Để đưa tiêu đề lên trên đường viền trên */
+    background-color: white;
+    width: fit-content;
+    padding: 0 10px;
+}
+
+.form-container form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
