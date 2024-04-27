@@ -1,0 +1,70 @@
+/* CSS cho slider */
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 330px; /* Đặt chiều cao cố định cho slider */
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%; /* Chiều cao 100% để đảm bảo nó lấp đầy slider-container */
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    height: 100%; /* Chiều cao 100% để lấp đầy slider-container */
+}
+
+/* CSS cho hình ảnh trong slide */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo hình ảnh không bị biến dạng và lấp đầy đúng kích thước */
+}
+/* end slider  */
+
+
+    
+/* begin modal  */
+/* Kích thước của label */
+.form-group label {
+
+}
+
+/* Kích thước của input */
+.form-group input {
+    width: 100%; /* Độ rộng 100% của input */
+    padding: 8px; /* Kích thước padding của input */
+    box-sizing: border-box; /* Đảm bảo kích thước tổng cộng không thay đổi khi thêm padding và border */
+}
+/* end modal  */
+
+
+/* CSS cho modal giỏ hàng */
+.cart-modal-content {
+    max-width: 800px; /* Đặt chiều rộng tối đa cho modal giỏ hàng */
+    margin: 30px auto; /* Để căn giữa trên trang */
+  }
+  
+  .cart-content {
+    width: 100%; /* Đặt chiều rộng của nội dung modal giỏ hàng là 100% */
+  }
+  
+  /* Tùy chỉnh kích thước nút đóng (nếu cần) */
+  .close {
+    font-size: 1.5rem;
+  }
+.modal .modal__submit{
+    float: right;
+    margin-left: 16px;
+}
+
+
+
+  
+
+  
+/* enđ csss môdal giỏ hàng    */

@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}    
+/* chung  */
+.text-white{
+    color: #fff !important;
+}
+.mt-16{
+    margin-top: 16px;
+}
+.mt-32{
+    margin-top: 32px;
+}
+.custom-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+.btn-no-active:active {
+    border: none !important;
+}
+
+
+/* header  */
+header{
+    background-color: #d70018;
+    
+}
+.top-nav{
+    background-color: #e9efff;
+    height: 32px;
+}
+.top-nav .nav-list{
+    display: flex;
+    justify-content: space-around;
+    line-height: 20px;
+}
+.heade-logo{
+    font-family: Roboto,sans-serif!important;
+    margin: 8px;
+}
+header > .nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ .nav-list{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    align-items: center;
+
+}
+.nav-item{
+    margin: 8px;
+   
+}
+   
+.nav-list .btn{
+    background-color: hsla(0, 0%, 100%, 0.2);
+    border-radius: 15px;
+}
+
+.modal-content{
+    min-width: 550px;
+}
+/* CSS Style */
+.form-group{
+    display: flex;
+    margin-top: 10px;
+
+}
+.form-group label,
+.form-group input {
+    min-width: 150px;
+}
+
+.category{
+    margin:0 8px;
+}
+.search-form {
+    display: flex;
+    margin-left: auto;
+    height: 60%;
+    margin: 8px 0;
+    flex: 1;    
+}
+
+.search-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    height: 30px;
+    border-radius: 12px;
+    margin-right: 5px;
+    flex: 1;
+}
+
+.search-form button {
+    /* padding: 8px;  */
+    min-width:50px;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+/* begin footer  */
+.footer {
+    /* position: fixed;
+    bottom: 0;
+    width: 100%; */
+    background-color: #343a40; /* Màu nền của footer */
+    color: #ffffff; /* Màu chữ của footer */
+    padding: 20px 0; /* Khoảng cách giữa nội dung và mép của footer */
+}
+.footer a{
+    color: #fff;
+}
+/* end footer  */
