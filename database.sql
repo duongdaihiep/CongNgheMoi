@@ -47,7 +47,7 @@ VALUES
 -- Thêm dữ liệu cho 3 sản phẩm Nokia vào bảng products
     ('Nokia', '8.3 5G', 9990000, 6.81, 8, 128, 'IPS LCD', '1080x2400 pixels', '64 MP + 12 MP + 2 MP + 2 MP', '6.81 inches', 'Android 10', 'Snapdragon 765G', '128 GB', '8 GB', '5G', 'Dual SIM', 18, 'Mid-range 5G Nokia smartphone with PureDisplay'),
     ('Nokia', '5.4', 3490000, 6.39, 4, 64, 'IPS LCD', '720x1560 pixels', '48 MP + 5 MP + 2 MP + 2 MP', '6.39 inches', 'Android 10', 'Snapdragon 662', '64 GB', '4 GB', '4G', 'Dual SIM', 25, 'Budget-friendly Nokia phone with quad-camera setup'),
-    ('Nokia', '1.4', 1490000, 6.51, 2, 32, 'IPS LCD', '720x1600 pixels', '8 MP + 2 MP', '6.51 inches', 'Android 10', 'Quad-core', '32 GB', '2 GB', '4G', 'Dual SIM', 30, 'Entry-level Nokia phone with large display'),
+    ('Nokia', '1.4', 1490000, 6.51, 2, 32, 'IPS LCD', '720x1600 pixels', '8 MP + 2 MP', '6.51 inches', 'Android 10', 'Quad-core', '32 GB', '2 GB', '4G', 'Dual SIM', 30, 'Entry-level Nokia phone with large display')
 
 
 -- Tạo bảng người dùng (User)

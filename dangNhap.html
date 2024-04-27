@@ -55,7 +55,7 @@
                     </div>
                     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                         <!-- Registration Form -->
-                        <form id="registerForm" class="needs-validation" novalidate>
+                        <form id="registerForm" class="needs-validation" novalidate action="./php/dangNhap/dangNhap.php" method="post">
                             <div class="form-group">
                                 <label for="newUsername">New Username:</label>
                                 <input type="text" class="form-control" id="newUsername" name="newUsername" required>
@@ -92,7 +92,7 @@
                                 <label for="address">Address:</label>
                                 <input type="text" class="form-control" id="address" name="address">
                             </div>
-                            
+                            <!-- <button type="button" id="registerButton" class="btn btn-success btn-block">Register</button> -->
                             <button type="submit" class="btn btn-success btn-block" onclick="submitRegisterForm()">Register</button>
                         </form>
                     </div>

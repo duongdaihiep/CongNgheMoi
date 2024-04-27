@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hash Password</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        function hashPassword() {
+            var password = document.getElementById("password").value;
+            var hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+            document.getElementById("hashedPassword").innerHTML = "Mật khẩu đã được mã hóa: " + hashedPassword;
+        }
+    </script>
+</head>
+<body>
+    <h2>Tool Băm Mật Khẩu</h2>
+    <input type="password" id="password" placeholder="Nhập mật khẩu">
+    <button onclick="hashPassword()">Băm mật khẩu</button>
+    <p id="hashedPassword"></p>
+</body>
+</html>
+
+
