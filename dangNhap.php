@@ -38,7 +38,7 @@
 
                 <div class="tab-content mt-3" id="authTabsContent">
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                        <form id="loginForm" class="needs-validation" novalidate>
+                        <form id="loginForm" class="needs-validation" novalidate action="./php/APIDangNhap.php" method="post">
                             <!-- Login Form -->
                             <div class="form-group">
                                 <label for="username">Username:</label>
@@ -50,12 +50,12 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                                 <div class="invalid-feedback">Please enter your password.</div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            <button type="submit" class="btn btn-primary btn-block" onclick="submitLoginForm()">Login</button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                         <!-- Registration Form -->
-                        <form id="registerForm" class="needs-validation" novalidate action="./php/dangNhap/dangNhap.php" method="post">
+                        <form id="registerForm" class="needs-validation" novalidate action="./php/APIDangKi.php" method="post">
                             <div class="form-group">
                                 <label for="newUsername">New Username:</label>
                                 <input type="text" class="form-control" id="newUsername" name="newUsername" required>
@@ -112,6 +112,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="./js/dangNhap.js"></script>
+    <script src="./js/dangKi.js"></script>
     
 </body>
 </html>

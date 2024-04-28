@@ -11,7 +11,7 @@ function addHeader(){
             </div>
             <div class="nav">
                 <h2 class="header-logo text-white ">
-                    <a class="header-logo text-white " href="./index.html">PhoneStar</a>
+                    <a class="header-logo text-white " href="./index.php">PhoneStar</a>
                     <i class="fa-regular fa-star"></i>                
                 </h2>
                 <div class="nav-list category text-white">
@@ -27,17 +27,17 @@ function addHeader(){
                 <ul class="nav-list">
                     <li class="nav-item">
                         <button type="button" class="btn btn-primary" >
-                        <a class=" text-white" href="./gioHang.html">Giỏ hàng</a>
+                        <a class=" text-white" href="./gioHang.php">Giỏ hàng</a>
                         </button>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-no-active text-white" >
-                        <a class=" text-white" href="./donHang.html">Đơn Hàng</a>
+                        <a class=" text-white" href="./donHang.php">Đơn Hàng</a>
                         </button>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn text-white" data-toggle="modal" data-target="#loginModal">
-                        <a class=" text-white" href="./dangnhap.html">Tài Khoản</a>
+                        <a class=" text-white" href="./dangnhap.php">Tài Khoản</a>
                         <i class="text-white fa-regular fa-user" style="margin-left:12px"></i>
                         </button>
                         
