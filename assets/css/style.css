@@ -5,9 +5,7 @@
     position: relative;
     height: 330px; /* Đặt chiều cao cố định cho slider */
 }
-h2{
-    margin: 50px 0 !important;
-}
+
 .slider {
     display: flex;
     transition: transform 0.5s ease-in-out;

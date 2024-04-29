@@ -26,7 +26,6 @@
 /* header  */
 header{
     background-color: #d70018;
-    height: 300px !important;
 }
 .top-nav{
     background-color: #e9efff;
@@ -45,6 +44,7 @@ header > .nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 300px;
 }
 
  .nav-list{
