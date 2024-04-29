@@ -21,8 +21,8 @@ function addHeader(){
                 </div>
 
                 <form class="search-form">
-                    <input type="text" placeholder="Tìm kiếm...">
-                    <button type="submit search-btn"><i class="fa fa-search"></i></button>
+                    <input type="text" id="search-input" placeholder="Tìm kiếm...">
+                    <button type="submit"id="searchBtn" class="search-btn"><i class="fa fa-search"></i></button>
                 </form>
                 <ul class="nav-list">
                     <li class="nav-item">
@@ -83,3 +83,5 @@ function addFooter(){
         </footer>`
     )
 }
+
+

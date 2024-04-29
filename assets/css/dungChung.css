@@ -26,7 +26,7 @@
 /* header  */
 header{
     background-color: #d70018;
-    
+    height: 300px !important;
 }
 .top-nav{
     background-color: #e9efff;

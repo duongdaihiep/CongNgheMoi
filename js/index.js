@@ -95,113 +95,43 @@ function displayCart() {
     // Hiển thị tổng số tiền phải thanh toán
     document.getElementById("totalAmount").textContent = totalAmount;
   }
+
   
-  // Hàm cập nhật số lượng sản phẩm
-  function updateQuantity(productId, action) {
-    var product = products.find((p) => p.id === productId);
-  
-    if (action === "increase") {
-      product.quantity++;
-    } else if (action === "decrease" && product.quantity > 1) {
-      product.quantity--;
-    }
-  
-    displayCart();
-  }
-  
-  // Hàm xóa sản phẩm khỏi giỏ hàng
-  function removeProduct(productId) {
-    var index = products.findIndex((p) => p.id === productId);
-    if (index !== -1) {
-      products.splice(index, 1);
-      displayCart();
-    }
-  }
-  
+document.addEventListener('DOMContentLoaded', function() {
+  // Lấy ra các phần tử cần thiết
+  var searchInput = document.getElementById('searchInput');
+  var searchBtn = document.getElementById('searchBtn');
 
-// Hàm tăng số lượng sản phẩm
-function increaseQuantity(rowId) {
-  // Lấy thông tin từ hàng cụ thể
-  const row = document.getElementById(rowId);
-  const quantityElement = row.querySelector(".quantity");
-  const priceElement = row.querySelector(".price");
-  const totalElement = row.querySelector(".total");
-
-  // Tăng số lượng
-  let quantity = parseInt(quantityElement.innerText);
-  quantity++;
-  quantityElement.innerText = quantity;
-
-  // Cập nhật tổng giá
-  const price = parseFloat(priceElement.innerText.replace("$", ""));
-  const total = quantity * price;
-  totalElement.innerText = `$${total.toFixed(2)}`;
-
-  // Cập nhật tổng số tiền phải thanh toán
-  updateTotalAmount();
-}
-
-// Hàm giảm số lượng sản phẩm
-function decreaseQuantity(rowId) {
-  // Lấy thông tin từ hàng cụ thể
-  const row = document.getElementById(rowId);
-  const quantityElement = row.querySelector(".quantity");
-  const priceElement = row.querySelector(".price");
-  const totalElement = row.querySelector(".total");
-
-  // Giảm số lượng
-  let quantity = parseInt(quantityElement.innerText);
-  if (quantity > 1) {
-    quantity--;
-    quantityElement.innerText = quantity;
-
-    // Cập nhật tổng giá
-    const price = parseFloat(priceElement.innerText.replace("$", ""));
-    const total = quantity * price;
-    totalElement.innerText = `$${total.toFixed(2)}`;
-
-    // Cập nhật tổng số tiền phải thanh toán
-    updateTotalAmount();
-  }
-}
-
-// Hàm cập nhật tổng số tiền phải thanh toán
-function updateTotalAmount() {
-  const totalAmountElement = document.getElementById("totalAmount");
-  const totalElements = document.querySelectorAll(".total");
-  let totalAmount = 0;
-
-  // Tính tổng giá từ tất cả các sản phẩm trong giỏ hàng
-  totalElements.forEach((totalElement) => {
-    const total = parseFloat(totalElement.innerText.replace("$", ""));
-    totalAmount += total;
+  // Thêm sự kiện click cho nút tìm kiếm
+  searchBtn.addEventListener('click', function(event) {
+      // Ngăn chặn hành động mặc định của form
+      event.preventDefault();
+      // Gọi hàm tìm kiếm khi người dùng nhấn vào nút tìm kiếm
+      search();
   });
 
-  // Hiển thị tổng số tiền phải thanh toán
-  totalAmountElement.innerText = `$${totalAmount.toFixed(2)}`;
-}
-
-// Hàm xóa sản phẩm khỏi giỏ hàng
-function removeProduct(productId) {
-  var products = getProducts();
-  var updatedProducts = products.filter(function (product) {
-    return product.id !== productId;
+  // Thêm sự kiện keyup cho trường input
+  searchInput.addEventListener('keyup', function(event) {
+      // Kiểm tra nếu phím Enter được nhấn
+      if (event.keyCode === 13) {
+          // Gọi hàm tìm kiếm khi người dùng nhấn phím Enter
+          search();
+      }
   });
 
-  // Gửi yêu cầu cập nhật vào CSDL qua AJAX
-  removeProductFromDatabase(productId);
-
-  // Hiển thị lại giỏ hàng
-  displayCart();
-}
-
-// Hàm xóa toàn bộ giỏ hàng
-function clearCart() {
-  // Gửi yêu cầu xóa toàn bộ giỏ hàng vào CSDL qua AJAX
-  clearCartInDatabase();
-
-  // Hiển thị lại giỏ hàng
-  displayCart();
-}
-
+  // Hàm tìm kiếm
+  function search() {
+      var keyword = searchInput.value.trim(); // Lấy giá trị nhập vào và loại bỏ các khoảng trắng đầu và cuối
+      // Kiểm tra xem trường input có dữ liệu không
+      if (keyword !== '') {
+        var currentURL = window.location.href;
+        var newURL = currentURL + '?searchKey=' + encodeURIComponent(keyword);
+        
+        window.location.href = newURL;
+      } else {
+          // Nếu trường input trống, không thực hiện tìm kiếm
+          alert('Vui lòng nhập từ khóa tìm kiếm');
+      }
+  }
+});
 

@@ -5,7 +5,9 @@
     position: relative;
     height: 330px; /* Đặt chiều cao cố định cho slider */
 }
-
+h2{
+    margin: 50px 0 !important;
+}
 .slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
@@ -25,7 +27,9 @@
     object-fit: cover; /* Đảm bảo hình ảnh không bị biến dạng và lấp đầy đúng kích thước */
 }
 /* end slider  */
-
+.row{
+    margin-top: 12px;
+}
 
     
 /* begin modal  */
@@ -61,7 +65,16 @@
     float: right;
     margin-left: 16px;
 }
-
+.price{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Màu chữ đậm */
+}
+.currency {
+    font-size: 14px;
+    color: #666; /* Màu chữ nhạt */
+    margin-left: 5px;
+}
 
 
   

@@ -1,3 +1,10 @@
+<?php
+    // Kiểm tra xem $_REQUEST['searchKey'] có tồn tại không
+    $searchKey = isset($_REQUEST['searchKey']) ? $_REQUEST['searchKey'] : ''; 
+    include "./php/API.php";
+    $p = new docAPI;
+    $results = $p->getByUrl("http://localhost:8080/CNMProject/CongNgheMoi/php/getProducts.php");
+  ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,11 +28,14 @@
     <script src="./js/dungChung.js"></script>
   </head>
   <body>
+
+
+  
     <div class="container">
       <script>
         addHeader();
       </script>
-        
+         
         
       <!-- slider  -->
       <div class="slider-container mt-32">
@@ -57,51 +67,84 @@
       <!-- danh mục sản phẩm  -->
       <div class="card__container">
         <h2>Điện thoại nổi bật</h2>
-      
-        <div class="row">
-          <!-- Card 1 -->
-          <div class="col-md-4">
-            <div class="card">
-              <img src="https://via.placeholder.com/300x200" alt="Phone 1" />
+        <a href=""></a>
+        <?php
+        $searchKey= $_REQUEST['searchKey'];
+        if(!isset($searchKey)){
+          $count = 0; // Biến đếm số lượng card đã được hiển thị trong mỗi dòng
+          foreach($results as $data) {
+              // Kiểm tra nếu biến đếm đạt đến 3, bắt đầu một hàng mới
+              if ($count % 3 == 0) {
+                echo '<div class="row">';
+              }
+              $price=$data->price;
+              $formatted_price = number_format($price, 0, ',', '.');
+              echo '
+              <div class="col-md-4"><a href="">
+              <div class="card">
+                <img src="./assets/img/product/' . $data->image . '" alt="Phone 1" />
+                <div class="card-content">
+                  <div class="card-title">'.$data->brand .' '. $data->model.'</div>
+                  <div class="price">'.$formatted_price.'<span class="currency"> VNĐ</span></div>
+                </div>
+              </div></a> 
+            </div>';
+              // Tăng biến đếm lên 1 sau mỗi card được hiển thị
+              $count++;
+              // Kiểm tra nếu đã hiển thị 3 card trong hàng, đóng hàng và bắt đầu hàng mới
+              if ($count % 3 == 0) {
+                  echo '</div>'; // Đóng hàng
+              }
+          }
+        }else{
+          $flag=false;
+          $count = 0; // Biến đếm số lượng card đã được hiển thị trong mỗi dòng
+          foreach($results as $data) {
+            // Kiểm tra nếu biến đếm đạt đến 3, bắt đầu một hàng mới
+            
+            $price=$data->price;
+            $formatted_price = number_format($price, 0, ',', '.');
+            if (strpos($searchKey, $data->model) !== false || strpos($searchKey, $data->brand) !== false) {
+              if ($count % 3 == 0) {
+                echo '<div class="row">';
+              }
+              $flag=true;
+              echo '<div class="col-md-4"><a href="">
+              <div class="card">
+              <img src="./assets/img/product/' . $data->image . '" alt="Phone 1" />
               <div class="card-content">
-                <div class="card-title">Phone 1</div>
-                <div class="card-description">Description for Phone 1.</div>
+              <div class="card-title">'.$data->brand .' '. $data->model.'</div>
+              <div class="price">'.$formatted_price.'<span class="currency"> VNĐ</span></div>
               </div>
-            </div>
-          </div>
-      
-          <!-- Card 2 -->
-          <div class="col-md-4">
-            <div class="card">
-              <img src="https://via.placeholder.com/300x200" alt="Phone 2" />
-              <div class="card-content">
-                <div class="card-title">Phone 2</div>
-                <div class="card-description">Description for Phone 2.</div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- Card 3 -->
-          <div class="col-md-4">
-            <div class="card">
-              <img src="https://via.placeholder.com/300x200" alt="Phone 3" />
-              <div class="card-content">
-                <div class="card-title">Phone 3</div>
-                <div class="card-description">Description for Phone 3.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-      </div>
+              </div></a>
+              </div>';
+              
+              // Tăng biến đếm lên 1 sau mỗi card được hiển thị
+              $count++;
+              
+              // Kiểm tra nếu đã hiển thị 3 card trong hàng, đóng hàng và bắt đầu hàng mới
+              if ($count % 3 == 0) {
+                echo '</div>'; // Đóng hàng
+              }
+            }
+          } 
+          if ($flag == 0){
+            echo '<h3>Không có dữ liệu</h3>';
+          }
+          // Kiểm tra nếu còn card mà chưa đủ 3 trong hàng cuối cùng, đóng hàng lại
 
+          if ($count % 3 != 0) {
+            echo '</div>'; // Đóng hàng
+        }
+        }
+          
+        ?>  
+      </div>
+      
       <script>
         addFooter();
       </script>
-      
-
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

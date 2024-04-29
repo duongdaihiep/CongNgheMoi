@@ -1,5 +1,5 @@
 <?php
-class  docAPI{
+class  docAPI{ 
     private function connect() {
         $conn = mysql_connect("localhost", "duong", "123456");
         if(!$conn) {
@@ -14,6 +14,27 @@ class  docAPI{
             return $conn;
         }
     }
+
+
+    public function getByUrl($url){
+        $client = curl_init($url);
+        curl_setopt($client, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($client);
+        
+        // Kiểm tra lỗi cURL và xử lý nếu có
+        if(curl_errno($client)){
+            // Xử lý lỗi cURL ở đây
+            echo 'Lỗi cURL: ' . curl_error($client);
+            return false; // hoặc trả về một giá trị mặc định khác
+        }
+        
+        curl_close($client);
+        
+        // Chuyển đổi phản hồi từ JSON sang đối tượng PHP
+        $results = json_decode($response);
+        return $results;
+    }
+    
 
     public function addUser($data){
         $link=$this->connect();        
@@ -96,7 +117,8 @@ class  docAPI{
                     "mobile_network" => $row["mobile_network"],
                     "sim_slots" => $row["sim_slots"],
                     "inventory" => $row["inventory"],
-                    "product_details" => $row["product_details"]
+                    "product_details" => $row["product_details"],
+                    "image" => $row["image"]
                 );
                 $data[] = $product;
             }
