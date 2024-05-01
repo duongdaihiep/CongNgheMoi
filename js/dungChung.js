@@ -21,8 +21,8 @@ function addHeader(){
                 </div>
 
                 <form class="search-form">
-                    <input type="text" id="search-input" placeholder="Tìm kiếm...">
-                    <button type="submit"id="searchBtn" class="search-btn"><i class="fa fa-search"></i></button>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+                    <button type="submit" id="searchBtn" class="search-btn"><i class="fa fa-search"></i></button>
                 </form>
                 <ul class="nav-list">
                     <li class="nav-item">
@@ -36,7 +36,7 @@ function addHeader(){
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn text-white" data-toggle="modal" data-target="#loginModal">
+                        <button type="button" class="btn text-white">
                         <a class=" text-white" href="./dangnhap.php">Tài Khoản</a>
                         <i class="text-white fa-regular fa-user" style="margin-left:12px"></i>
                         </button>

@@ -66,7 +66,14 @@ class  docAPI{
             echo json_encode(array("success" => true));
         }
     }
-
+    //kiểm tra đăng nhập hay chưa
+    public function generateAuthenticationLink() {
+        if (isset($_SESSION['username'])) {
+            return '<button type="button" class="btn text-white" onclick="logout()">Đăng xuất</button>';
+        } else {
+            return '<a class="text-white" href="./dangnhap.php">Tài Khoản</a>';
+        }
+    }
 
     public function login($username, $password) {
         $conn = $this->connect(); // Kết nối đến cơ sở dữ liệu

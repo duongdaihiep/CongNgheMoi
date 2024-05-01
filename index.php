@@ -100,16 +100,20 @@
           $flag=false;
           $count = 0; // Biến đếm số lượng card đã được hiển thị trong mỗi dòng
           foreach($results as $data) {
+            // echo gettype($data->brand);
+            // echo gettype($searchKey);
+            // echo ($searchKey .'<br>'); 
+            // echo ($data->brand .'<br>');
             // Kiểm tra nếu biến đếm đạt đến 3, bắt đầu một hàng mới
-            
-            $price=$data->price;
+              $price=$data->price;
             $formatted_price = number_format($price, 0, ',', '.');
-            if (strpos($searchKey, $data->model) !== false || strpos($searchKey, $data->brand) !== false) {
+            if (strpos( strtoupper($data->model),strtoupper($searchKey)) !==false || strpos(strtoupper($data->brand),strtoupper($searchKey))!== false) {
+            // if($data->model.indexOf($searchKey)!==-1){}
               if ($count % 3 == 0) {
                 echo '<div class="row">';
               }
               $flag=true;
-              echo '<div class="col-md-4"><a href="">
+              echo '<div class="col-md-4"><a href="http://localhost:8080/CNMProject/CongNgheMoi/chiTietSanPham.php">
               <div class="card">
               <img src="./assets/img/product/' . $data->image . '" alt="Phone 1" />
               <div class="card-content">

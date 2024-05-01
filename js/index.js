@@ -121,17 +121,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Hàm tìm kiếm
   function search() {
-      var keyword = searchInput.value.trim(); // Lấy giá trị nhập vào và loại bỏ các khoảng trắng đầu và cuối
-      // Kiểm tra xem trường input có dữ liệu không
-      if (keyword !== '') {
+    var keyword = searchInput.value.trim();
+    
+    if (keyword !== '') {
+        // Kiểm tra xem tham số tìm kiếm đã tồn tại trong URL hay chưa
         var currentURL = window.location.href;
-        var newURL = currentURL + '?searchKey=' + encodeURIComponent(keyword);
+        var newURL = '';
+        if (currentURL.includes('?searchKey=')) {
+            // Nếu tham số đã tồn tại, ta sẽ thay thế giá trị của nó
+            newURL = currentURL.replace(/(\?|&)searchKey=([^&]*)/, '$1searchKey=' + encodeURIComponent(keyword));
+        } else {
+            // Nếu tham số chưa tồn tại, ta sẽ thêm nó vào URL
+            newURL = currentURL + (currentURL.includes('?') ? '&' : '?') + 'searchKey=' + encodeURIComponent(keyword);
+        }
         
         window.location.href = newURL;
-      } else {
-          // Nếu trường input trống, không thực hiện tìm kiếm
-          alert('Vui lòng nhập từ khóa tìm kiếm');
-      }
-  }
+    } else {
+        alert('Vui lòng nhập từ khóa tìm kiếm');
+    }
+}
+
 });
 
