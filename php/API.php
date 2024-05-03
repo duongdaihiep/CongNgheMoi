@@ -1,6 +1,6 @@
 <?php
 class  docAPI{ 
-    private function connect() {
+    public function connect() {
         $conn = mysql_connect("localhost", "duong", "123456");
         if(!$conn) {
             echo '<script type="text/javascript">

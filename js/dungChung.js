@@ -92,67 +92,8 @@ function addFooter(){
         </footer>`
     )
 }
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Hàm ẩn chatbox
-    function closeChatbox() {
-        var chatContainer = document.querySelector(".chat-container");
-        chatContainer.style.display = "none";
-        var chatIcon = document.querySelector(".fa-comments");
-        chatIcon.style.display = "block";
-    }
-
-    // Hàm để gửi tin nhắn
-    function sendMessage() {
-        var messageInput = document.getElementById("messageInput");
-        var message = messageInput.value;
-        if (message.trim() !== "") {
-            // Gửi tin nhắn mới đến server
-            fetch('send_message.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({content: message})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Tin nhắn đã được gửi:', data);
-                // Hiển thị tin nhắn gửi trên giao diện
-                displayMessage({content: message, type: "sent"});
-            })
-            .catch(error => {
-                console.error('Lỗi:', error);
-            });
-            messageInput.value = "";
-        }
-    }
-
-
-    // Hàm để hiển thị tin nhắn
-    function displayMessage(message) {
-        var chatbox = document.getElementById("chatbox");
-        var messageElement = document.createElement("div");
-        messageElement.classList.add("message", message.type === "sent" ? "sent" : "received", "p-2");
-        messageElement.textContent = message.content;
-        chatbox.appendChild(messageElement);
-        // Cuộn xuống dòng tin nhắn mới nhất
-        chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    var closeBtn = document.querySelector(".close");
-    closeBtn.addEventListener("click", closeChatbox);
-
-    const eventSource = new EventSource('./php/sse.php');
-    eventSource.onmessage = function(event) {
-        const message = JSON.parse(event.data);
-        console.log('Nhận tin nhắn mới:', message);
-        // Hiển thị tin nhắn nhận trên giao diện
-        displayMessage({content: message.content, type: "received"});
-    };  
-
-    var chatIcon = document.querySelector(".fa-comments");
+// hàm hiện chatbox
+var chatIcon = document.querySelector(".fa-comments");
     chatIcon.addEventListener("click", function() {
         // Ẩn biểu tượng chat
         chatIcon.style.display = "none";
@@ -161,8 +102,53 @@ document.addEventListener("DOMContentLoaded", function() {
         chatContainer.style.display = "block";
     });
 
-    var sendBtn = document.querySelector("#sendBtn");
-    sendBtn.addEventListener("click", sendMessage);
-});
 
 
+
+// Hàm ẩn chatbox
+function closeChatbox() {
+    var chatContainer = document.querySelector(".chat-container");
+    chatContainer.style.display = "none";
+    // Hiển thị lại biểu tượng chat
+    var chatIcon = document.querySelector(".fa-comments");
+    chatIcon.style.display = "block";
+}
+
+// Hàm để gửi tin nhắn bằng AJAX
+function sendMessage() {
+    var messageInput = document.getElementById("messageInput").value;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Xử lý phản hồi từ máy chủ
+            var response = JSON.parse(xhr.responseText);
+            if (response.status === "success") {
+                // Nếu tin nhắn được gửi thành công, cập nhật lại chatbox
+                updateChatbox();
+            } else {
+                // Xử lý lỗi nếu có
+                console.error("Lỗi khi gửi tin nhắn: " + response.message);
+            }
+        }
+    };
+    xhr.open("POST", "../send_message.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("content=" + messageInput);
+}
+
+// Hàm để cập nhật lại chatbox
+function updateChatbox() {
+    var chatbox = document.getElementById("chatbox");
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Xử lý phản hồi từ máy chủ
+            chatbox.innerHTML = xhr.responseText;
+        }
+    };
+    xhr.open("GET", "../get_messages.php", true);
+    xhr.send();
+}
+
+// Cập nhật chatbox mỗi 2 giây
+setInterval(updateChatbox, 2000);
