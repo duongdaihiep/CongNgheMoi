@@ -98,9 +98,9 @@ class  docAPI{
             return false;
         }
     }
-    public function getProducts(){
+    public function getProducts($query){
         $conn = $this->connect(); // Kết nối đến cơ sở dữ liệu
-        $query = "SELECT * FROM products";
+        // $query = "SELECT * FROM products";
         $result = mysql_query($query,$conn); 
         if ($result && mysql_num_rows($result) > 0) {
             $data = array();

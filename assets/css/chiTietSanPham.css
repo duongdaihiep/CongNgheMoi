@@ -1,14 +1,33 @@
-.details-section {
-    border: 1px solid #ddd; /* Màu và kích thước của viền */
-    padding: 15px; /* Khoảng cách giữa nội dung và viền */
-    border-radius: 5px; /* Đường cong góc của viền */
-}
-.img-fluid {
+.img-container {
+    position: relative; /* Đặt vị trí của container là tương đối */
+    overflow: hidden; /* Không cho phép nội dung vượt ra khỏi container */
     border: 1px solid #ccc; /* Định dạng border */
     padding: 5px; /* Tạo khoảng cách giữa border và ảnh */
+  }
+  
+  .product-image {
+    max-width: 100%; /* Ảnh sẽ không vượt quá chiều rộng của phần tử chứa nó */
+    max-height: 100%; /* Ảnh sẽ không vượt quá chiều cao của phần tử chứa nó */
+    width: auto; /* Đảm bảo rằng chiều rộng tự động điều chỉnh sao cho giữ tỷ lệ khung hình */
+    height: auto; /* Đảm bảo rằng chiều cao tự động điều chỉnh sao cho giữ tỷ lệ khung hình */
+    position: relative; /* Đặt vị trí của ảnh là tương đối */
+    display: block; /* Hiển thị ảnh như một block element */
+  }
+  
+  .product-info {
+    position: absolute; /* Đặt vị trí của thông tin sản phẩm là tuyệt đối */
+    bottom: 0; /* Đặt bottom để nằm ở dưới cùng */
+    background-color: rgba(255, 255, 255, 0.8); /* Màu nền của thông tin sản phẩm */
+    width: 100%; /* Đảm bảo thông tin sản phẩm chiếm toàn bộ chiều rộng của container */
+    padding: 10px; /* Tạo khoảng cách bên trong cho thông tin sản phẩm */
+  }
+  .price{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Màu chữ đậm */
 }
-.img-fluid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.currency {
+    font-size: 14px;
+    color: #666; /* Màu chữ nhạt */
+    margin-left: 5px;
 }

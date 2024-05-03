@@ -1,9 +1,25 @@
 <?php
-    // Kiểm tra xem $_REQUEST['searchKey'] có tồn tại không
-    $searchKey = isset($_REQUEST['searchKey']) ? $_REQUEST['searchKey'] : ''; 
-    include "./php/API.php";
-    $p = new docAPI;
-    $results = $p->getByUrl("http://localhost:8080/CNMProject/CongNgheMoi/php/getProducts.php");
+session_start();
+
+// Kiểm tra xem có phiên đăng nhập không
+if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
+    $isLogged = true;
+} else {
+    $isLogged = false;
+}
+?>
+
+<script>
+    var isLogged = <?php echo $isLogged ? 'true' : 'false'; ?>;
+</script>
+
+
+<?php
+  // Kiểm tra xem $_REQUEST['searchKey'] có tồn tại không
+  $searchKey = isset($_REQUEST['searchKey']) ? $_REQUEST['searchKey'] : ''; 
+  include "./php/API.php";
+  $p = new docAPI;
+  $results = $p->getByUrl("http://localhost:8080/CNMProject/CongNgheMoi/php/getProducts.php");
   ?>
 <!doctype html>
 <html lang="en">
@@ -33,7 +49,7 @@
   
     <div class="container">
       <script>
-        addHeader();
+        addHeader(isLogged);
       </script>
          
         
@@ -80,7 +96,7 @@
               $price=$data->price;
               $formatted_price = number_format($price, 0, ',', '.');
               echo '
-              <div class="col-md-4"><a href="">
+              <div class="col-md-4"><a href="http://localhost:8080/CNMProject/CongNgheMoi/chiTietSanPham.php?product_id='.$data->product_id.'">
               <div class="card">
                 <img src="./assets/img/product/' . $data->image . '" alt="Phone 1" />
                 <div class="card-content">
@@ -113,7 +129,7 @@
                 echo '<div class="row">';
               }
               $flag=true;
-              echo '<div class="col-md-4"><a href="http://localhost:8080/CNMProject/CongNgheMoi/chiTietSanPham.php">
+              echo '<div class="col-md-4"><a href="http://localhost:8080/CNMProject/CongNgheMoi/chiTietSanPham.php?'.$data->product_id.'">
               <div class="card">
               <img src="./assets/img/product/' . $data->image . '" alt="Phone 1" />
               <div class="card-content">
@@ -144,7 +160,41 @@
           
         ?>  
       </div>
-      
+
+      <!-- icon chatbox -->
+      <div class="chat">
+      <i class="fa fa-comments" aria-hidden="true"></i>
+      </div>
+      <!-- hộp thoại chat -->
+      <div class="chat-container">
+      <div class="chat-header">
+        ChatBot
+        <button class="btn-admin">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+        <button class="close">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="chatbox" id="chatbox">
+        <!-- Nơi hiển thị tin nhắn -->
+      </div>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="messageInput"
+          placeholder="Nhập tin nhắn..."
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" onclick="sendMessage()">
+            Gửi
+          </button>
+        </div>
+      </div>
+    </div>  
+
+      <!-- footer  -->
       <script>
         addFooter();
       </script>
