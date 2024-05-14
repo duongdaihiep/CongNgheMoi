@@ -1,5 +1,5 @@
 // file này chứa mã  nguồn dùng chung cho các phần của FE 
-function addHeader(isLogged) {
+function addHeader() {
     document.write(
         `<header>
             <div class="top-nav">
@@ -37,7 +37,7 @@ function addHeader(isLogged) {
                     </li>
                     <li class="nav-item">
                         <button id="accountBtn" type="button" class="btn text-white">
-                        ${isLogged ? '<a class=" text-white" href="../php/APIDangXuat.php">Đăng Xuất</a>' : '<a class=" text-white" href="./dangnhap.php">Tài Khoản</a>'}
+                        <a class=" text-white" href="./dangnhap.php">Tài Khoản</a>
                         <i class="text-white fa-regular fa-user" style="margin-left:12px"></i>
                         </button>
                     </li>
@@ -47,12 +47,12 @@ function addHeader(isLogged) {
     );
 
     // Xử lý sự kiện khi click vào nút đăng xuất
-    document.getElementById('accountBtn').addEventListener('click', function() {
-        if(isLogged) {
-            // Nếu đã đăng nhập, chuyển hướng đến trang logout.php để xóa phiên
-            window.location.href = '../php/APIDangXuat.php';
-        }
-    });
+    // document.getElementById('accountBtn').addEventListener('click', function() {
+    //     if(isLogged) {
+    //         // Nếu đã đăng nhập, chuyển hướng đến trang logout.php để xóa phiên
+    //         window.location.href = '../php/APIDangXuat.php';
+    //     }
+    // });
     
 }
 

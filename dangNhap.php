@@ -23,7 +23,7 @@
     <div class="container">
         <script>
             addHeader();
-          </script>
+        </script>
         <div class="row">
             <div class="form-container col-md-6 offset-md-3">
                 <h2 class="text-center">Login or Register</h2>

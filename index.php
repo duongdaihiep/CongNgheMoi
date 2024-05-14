@@ -9,9 +9,6 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
 }
 ?>
 
-<script>
-    var isLogged = <?php echo $isLogged ? 'true' : 'false'; ?>;
-</script>
 
 
 <?php
@@ -48,7 +45,7 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
   
     <div class="container">
       <script>
-        addHeader(isLogged);
+        addHeader();
       </script>
          
         
