@@ -38,6 +38,8 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="./js/dungChung.js"></script>
+    <script src="./js/index.js"></script>
   </head>
   <body>
 
@@ -162,26 +164,26 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
       <button class="chat-icon"><i class="fa fa-comments" aria-hidden="true"></i></button>
       </div>
       <!-- Hộp thoại chat -->
-<div class="chat-container">
-    <div class="chat-header">
-        ChatBot
-        <button class="btn-admin">
-            <i class="fa fa-refresh" aria-hidden="true"></i>
-        </button>
-        <button class="close" onclick="closeChatbox()">
-            <i class="fa fa-times" aria-hidden="true"></i>
-        </button>
-    </div>
-    <div class="chatbox" id="chatbox">
-        <!-- Nơi hiển thị tin nhắn -->
-    </div>
-    <div class="input-group">
-        <input type="text" class="form-control" id="messageInput" placeholder="Nhập tin nhắn..." />
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" onclick="sendMessage()">Gửi</button>
-        </div>
-    </div>
-</div>
+      <div class="chat-container">
+          <div class="chat-header">
+              ChatBot
+              <button class="btn-admin">
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+              </button>
+              <button class="close" onclick="closeChatbox()">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+          </div>
+          <div class="chatbox" id="chatbox">
+              <!-- Nơi hiển thị tin nhắn -->
+          </div>
+          <div class="input-group">
+              <input type="text" class="form-control" id="messageInput" placeholder="Nhập tin nhắn..." />
+              <div class="input-group-append">
+                  <button class="btn btn-primary" type="button" onclick="sendMessage()">Gửi</button>
+              </div>
+          </div>
+      </div>
 
 
       <!-- footer  -->
@@ -193,7 +195,7 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- <script src="login.js"></script> -->
-    <script src="./js/dungChung.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/chatbox.js"></script>
+    
   </body>
 </html>

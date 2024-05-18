@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,6 +100,15 @@
                 </div>
             </div>
         </div>
+        <?php
+            if (isset($_REQUEST['flag']) && $_REQUEST['flag'] === 'false') {
+                // Nếu nhận được thông tin từ API là flag=false, hiển thị alert thông báo lỗi
+                echo "<script>
+                    alert('Thông tin đăng nhập không chính xác.');
+                    window.location.href = 'http://localhost:8080/CNMProject/CongNgheMoi/dangnhap.php';
+                </script>";
+            }
+        ?>
         <script>
             addFooter();
           </script>

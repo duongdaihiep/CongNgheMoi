@@ -86,13 +86,13 @@ class  docAPI{
         $hashedPassword = hash('sha256', $escapedPassword);
     
         // Thực hiện truy vấn để kiểm tra tên người dùng và mật khẩu
-        $query = "SELECT * FROM user WHERE username = '$escapedUsername' AND password = '$hashedPassword'";
+        $query = "SELECT user_id FROM user WHERE username = '$escapedUsername' AND password = '$hashedPassword'";
         $result = mysql_query($query, $conn);
     
         // Kiểm tra kết quả truy vấn
         if ($result && mysql_num_rows($result) > 0) {
             // Tìm thấy người dùng có tên người dùng và mật khẩu khớp
-            return true;
+            return $result;
         } else {
             // Không tìm thấy người dùng hoặc thông tin đăng nhập không khớp
             return false;

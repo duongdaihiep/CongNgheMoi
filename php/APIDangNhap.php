@@ -27,17 +27,14 @@
             // Kiểm tra tên đăng nhập và mật khẩu trong cơ sở dữ liệu
             $username = mysql_real_escape_string($_POST['username']);
             $password = mysql_real_escape_string($_POST['password']);
-            $flag = $p->login($username,$password);
-            if ($flag) {
+            $user_id = $p->login($username,$password);
+            if ($user_id) {
                 // Nếu thông tin đăng nhập chính xác, tạo một phiên đăng nhập và chuyển hướng người dùng đến trang chính
-                $_SESSION['username'] = $username;
+                $_SESSION['user_id'] = $user_id;
                 header("Location: http://localhost:8080/CNMProject/CongNgheMoi/index.php");
                 exit;
             } else {
-                // Nếu thông tin đăng nhập không chính xác, hiển thị thông báo lỗi
-                $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
-                echo "<script>alert('Tên đăng nhập hoặc mật khẩu không đúng.')</script>";
-                header("Location: http://localhost:8080/CNMProject/CongNgheMoi/dangnhap.php");
+                header("Location: http://localhost:8080/CNMProject/CongNgheMoi/dangnhap.php?flag=false");
             }
         }else{
             echo "<script>alert('lỗi')</script>";

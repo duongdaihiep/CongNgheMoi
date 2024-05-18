@@ -149,13 +149,13 @@ header > .nav{
     margin: 0;
     border-radius: 20px;
   }
-  .message.sent {
+  .message .sent {
     margin: 0;
     background-color: #dcf8c6;
     align-self: flex-end;
     text-align: right; /* căn lề bên phải cho tin nhắn gửi */
   }
-  .message.received {
+  .message .received {
     margin: 0;
     background-color: #e9ebee;
     align-self: flex-start;
