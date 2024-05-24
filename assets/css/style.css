@@ -84,7 +84,8 @@
     flex-direction: column;
     align-items: center; /* Căn giữa các nút theo chiều ngang */
     justify-content: center; /* Căn giữa các nút theo chiều dọc nếu cần */
-   
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
 }
 
 /* Định dạng cho các nút */

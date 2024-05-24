@@ -186,48 +186,10 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
           </div>
         </div>
         <div class="question-group" id="questionGroup">
-          <button class="question" id="question" onclick="botSendMessage2()"  >Bắt đầu tư vấn</button>
+          <button class="question" id="question" onclick="botSendMessage('question')">Bắt đầu tư vấn</button>
         </div>
       </div>
-
-        <script src="https://cdn.socket.io/4.1.3/socket.io.min.js"></script>
-          <script>
-            const socket = io('http://localhost:8080');
-
-            socket.on('message', (msg) => {
-                displayMessage(msg, 'received');
-            });
-
-            function toggleChat() {
-                const chatContainer = document.getElementById('chatContainer');
-                chatContainer.classList.toggle('active');
-            }
-
-            function closeChatbox() {
-                const chatContainer = document.getElementById('chatContainer');
-                chatContainer.classList.remove('active');
-            }
-
-            function sendMessage() {
-                const messageInput = document.getElementById('messageInput');
-                const message = messageInput.value.trim();
-                if (message === '') return;
-
-                displayMessage(message, 'sent');
-                socket.emit('message', message);
-                messageInput.value = '';
-            }
-
-            function displayMessage(message, sender) {
-                const chatbox = document.getElementById('chatbox');
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', sender);
-                messageElement.textContent = message;
-                chatbox.appendChild(messageElement);
-                // Tự động cuộn xuống cuối chatbox khi có tin nhắn mới
-                chatbox.scrollTop = chatbox.scrollHeight;
-            }
-        </script>
+        
         <!-- footer  -->
         <script>
           addFooter();
