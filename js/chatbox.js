@@ -5,16 +5,14 @@ var chatIcon = document.querySelector(".fa-comments");
         // Ẩn biểu tượng chat
         chatIcon.style.display = "none";
         // Hiện hộp thoại tin nhắn
-        var chatContainer = document.querySelector(".chat-container");
+        var chatContainer = document.querySelector(".chat-container1");
         chatContainer.style.display = "block";
     });
 
 
-
-
 // Hàm ẩn chatbox
 function closeChatbox() {
-    var chatContainer = document.querySelector(".chat-container");
+    var chatContainer = document.querySelector(".chat-container1");
     chatContainer.style.display = "none";
     // Hiển thị lại biểu tượng chat
     var chatIcon = document.querySelector(".fa-comments");
@@ -26,9 +24,28 @@ function sendMessage() {
     const message = messageInput.value.trim();
     if (message === '') return;
 
+    // Gửi dữ liệu tin nhắn đến máy chủ bằng Fetch API
+    fetch('../php/sendMessage.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: message })
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Hiển thị thông báo từ máy chủ
+        alert(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+    // Hiển thị tin nhắn đã gửi trong giao diện người dùng
     displayMessage(message, 'sent');
     messageInput.value = '';
 }
+
 
 
 
@@ -44,17 +61,18 @@ function displayMessage(message, sender) {
 }
 
 function toggleElements() {
-    var inputGroup = document.getElementById("inputGroup");
-    var questionGroup = document.getElementById("questionGroup");
+    var inputGroup = document.getElementsByClassName("chat-container2")[0];
+    var questionGroup = document.getElementsByClassName("chat-container1")[0];
 
     // Kiểm tra xem phần tử đang được hiển thị hay ẩn
-    if (inputGroup.style.display === "none") {
+    if (inputGroup.style.display === "none") {  
 
-        inputGroup.style.display = "flex"; // Hiển thị phần tử inputGroup
+        inputGroup.style.display = "block"; // Hiển thị phần tử inputGroup
         questionGroup.style.display = "none"; // Ẩn phần tử questionGroup
+        // loadChatHistory();
     } else {
         inputGroup.style.display = "none"; // Ẩn phần tử inputGroup
-        questionGroup.style.display = "flex"; // Hiển thị phần tử questionGroup
+        questionGroup.style.display = "block"; // Hiển thị phần tử questionGroup
     }
 }
 
@@ -78,7 +96,9 @@ function botSendMessage(s) {
 let sent1='Bắt đầu tư vấn';
 let sent2=['Giải trí','Chụp Hình','Chơi game','Làm việc']
 let sent3=['IOS','Androi']
-let sent4=['1.000.000-3.000.000','3.000.000-6.000.000','6.000.000-12000000','Trên 12.000.000']
+let sent4=['Dưới 3.000.000','3.000.000-6.000.000','6.000.000-12.000.000','Trên 12.000.000']
+let sent5=['CameraAI','Camera trên 12MP', 'Camera zoom 100x', 'không yêu cầu']
+let sent6=['Loa Kép','không yêu cầu']
 let answer=[]
 
 
@@ -95,7 +115,7 @@ function botReceivedMessage(){
         lastSentText = lastSentElement.textContent.trim();
 
         // In ra nội dung văn bản của phần tử cuối cùng
-        console.log(lastSentText);
+        // console.log(lastSentText);
     }
     if (lastSentText===sent1){
         displayMessage('Nhu cầu sử dụng của bạn là gì?','received');
@@ -110,10 +130,45 @@ function botReceivedMessage(){
         displayMessage('Bạn có khả năng tài chính tầm bao nhiêu?','received');
         createButtons(sent4);
         answer.push(lastSentText)
+    }else if(sent4.includes(lastSentText)){
+        displayMessage('Bạn có yêu cầu gì về camera không?','received');
+        createButtons(sent5);
+        answer.push(lastSentText)
+    }else if(sent5.includes(lastSentText)){
+        displayMessage('Bạn có yêu cầu gì về loa không?','received');
+        createButtons(sent6);
+        answer.push(lastSentText)
+    }else if(sent6.includes(lastSentText)){
+        displayMessage('Chúng tôi dã tìm ra sản phẩm phù hợp cho bạn','received');
+        displayMessage('Sản phẩm phù hợp với bạn sẽ hiển thị trên màn hình trang chủ ','received');
+        answer.push(lastSentText);
+        clearButton();
+        sendArray(answer);
     }
     console.log(answer);
 }
+
+function clearButton() {
+    var questionGroup = document.getElementById("questionGroup");
+    if (!questionGroup) return;
+    questionGroup.innerHTML = '';
+    var button = document.createElement("button");
+    button.className = "question";
+    // var answer1 = "IOS"; // Giả sử giá trị của answer[2]
+    // var answer2 = "6.000.000-12.000.000"; // Giả sử giá trị của answer[3]
+    var att = "getProducts('" + answer[2] + "','" + answer[3] + "')";
+    button.setAttribute('onclick', att);
+    button.textContent = "Tìm điện thoại";
+    questionGroup.appendChild(button);
+}
+
+function getProducts(os, price) {
+    window.location.href = "http://localhost:8080/CNMProject/CongNgheMoi/index.php?os=" + os + "&price=" + price;
+}
+
+
 function createButtons(array) {
+    
     var questionGroup = document.getElementById("questionGroup");
     if (!questionGroup) return; // Kiểm tra xem phần tử đã tồn tại hay không
 
@@ -134,33 +189,4 @@ function createButtons(array) {
     });
 }
 
-function checkSession() {
-    fetch('../php/check_session.php')
-    .then(response => {
-        console.log('Raw response:', response); // Log phản hồi thô
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text(); // Lấy phản hồi dưới dạng text
-    })
-    .then(text => {
-        console.log('Response text:', text); // Log phản hồi dưới dạng text
-        try {
-            const data = JSON.parse(text); // Chuyển đổi text sang JSON
-            if (data.logged_in) {
-                console.log('A session is active.');
-                // Thực hiện các hành động khi có phiên đang hoạt động
-            } else {
-                console.log('No active session found.');
-                // Thực hiện các hành động khi không có phiên đang hoạt động
-            }
-        } catch (error) {
-            console.error('Error parsing JSON:', error); // Log lỗi khi parse JSON
-        }
-    })
-    .catch(error => console.error('Error checking session:', error));
-}
-
-// Gọi hàm kiểm tra phiên khi trang được tải
-checkSession();
 

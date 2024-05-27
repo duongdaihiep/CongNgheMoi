@@ -7,7 +7,7 @@ $p= new docAPI; // Thay thế bằng tên cơ sở dữ liệu của bạn
 
 // Lấy dữ liệu từ JavaScript
 $data = json_decode(file_get_contents('php://input'), true);
-echo $data;
+// echo $data;
 
 // Thêm dữ liệu vào bảng users
 $p->addUser($data);

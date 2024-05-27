@@ -38,10 +38,17 @@
                             <th>Đơn giá</th>
                             <th>Số lượng</th>
                             <th>Tổng giá</th>
-                            <th>Xóa</th>
                         </tr>
                     </thead>
-                    <tbody id="cartContent" class="cart-content"></tbody>
+                    <tbody id="cartContent" class="cart-content">
+                        <tr>
+                            <td>1</td>
+                            <td>APPLE Iphone 13 pro</td>
+                            <td class ='price'><?php echo number_format(29990000, 0, ',', '.');?><span class="currency"> VNĐ</span></td>
+                            <td>1</td>
+                            <td class ='price'><?php echo number_format(29990000, 0, ',', '.');?><span class="currency"> VNĐ</span></td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="total-amount">
                     Tổng số tiền phải thanh toán: <span id="totalAmount">0</span>

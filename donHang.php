@@ -2,7 +2,7 @@
 session_start(); // Bắt đầu phiên
 
 // Kiểm tra xem người dùng đã đăng nhập hay chưa
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_id'])) {
     // Nếu phiên đăng nhập không tồn tại, chuyển hướng người dùng đến trang đăng nhập
     header("Location: http://localhost:8080/CNMProject/CongNgheMoi/dangnhap.php");
     exit;

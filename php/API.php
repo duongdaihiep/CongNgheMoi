@@ -37,7 +37,8 @@ class  docAPI{
     
 
     public function addUser($data){
-        $link=$this->connect();        
+        $link=$this->connect();  
+        // echo $link;      
         $newUsername = mysql_real_escape_string($_POST['newUsername']);
         $newPassword = hash('sha256',mysql_real_escape_string($_POST['newPassword']));
         $email = mysql_real_escape_string($_POST['email']);
@@ -92,12 +93,15 @@ class  docAPI{
         // Kiểm tra kết quả truy vấn
         if ($result && mysql_num_rows($result) > 0) {
             // Tìm thấy người dùng có tên người dùng và mật khẩu khớp
-            return $result;
+            $row = mysql_fetch_assoc($result); // Lấy hàng đầu tiên từ kết quả
+            $user_id = $row['user_id']; // Trích xuất user_id từ hàng đó
+            return $user_id;
         } else {
             // Không tìm thấy người dùng hoặc thông tin đăng nhập không khớp
-            return false;
+            return 'không tìm thaysy người dùng';
         }
     }
+    
     public function getProducts($query){
         $conn = $this->connect(); // Kết nối đến cơ sở dữ liệu
         // $query = "SELECT * FROM products";
@@ -236,6 +240,18 @@ class  docAPI{
             return false;
         }
     }
+
+    public function getMessages($url) {
+        $results = $this->getByUrl($url);
+        foreach ($results as $data) {
+            if ($data->sender_id !== 1) {
+                echo '<div class="message sent">' . htmlspecialchars($data->content) . '</div>';
+            } else {
+                echo '<div class="message received">' . htmlspecialchars($data->content) . '</div>';
+            }
+        }
+    }
+    
     
     
     

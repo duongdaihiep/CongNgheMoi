@@ -14,11 +14,6 @@ function addHeader() {
                     <a class="header-logo text-white " href="./index.php">PhoneStar</a>
                     <i class="fa-regular fa-star"></i>                
                 </h2>
-                <div class="nav-list category text-white">
-                    <button type="button" class="btn text-white" data-toggle="modal" data-target="#loginModal">
-                    <i class="fa-solid fa-list"></i>Danh Mục
-                    </button>
-                </div>
 
                 <form class="search-form">
                     <input type="text" id="searchInput" placeholder="Tìm kiếm...">
@@ -37,14 +32,15 @@ function addHeader() {
                     </li>
                     <li class="nav-item">
                         <button id="accountBtn" type="button" class="btn text-white">
-                        <a class=" text-white" href="./dangnhap.php">Tài Khoản</a>
-                        <i class="text-white fa-regular fa-user" style="margin-left:12px"></i>
+                        <a class=" text-white" href="./dangnhap.php">Tài Khoản
+                        <i class="text-white fa-regular fa-user" style="margin-left:12px"></i></a>
                         </button>
                     </li>
                 </ul>
             </div>
         </header>`
     );
+    // 
 
     // Xử lý sự kiện khi click vào nút đăng xuất
     // document.getElementById('accountBtn').addEventListener('click', function() {
@@ -69,7 +65,7 @@ function addFooter(){
                         <h4>Thông Tin Liên Hệ</h4>
                         <p>Địa chỉ: 12 Nguyễn Văn Bảo, Gò Vấp, Tp.HCM</p>
                         <p>Email: 20029511.duong@student.iuh.edu.com</p>
-                        <p>Điện thoại: 0869217942</p>
+                        <p>Email: 20030691.duong@student.iuh.edu.com</p>
                     </div>
                     <div class="col-md-4">
                         <h4>Danh Mục</h4>

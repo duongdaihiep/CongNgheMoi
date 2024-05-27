@@ -1,22 +1,30 @@
 <?php
-session_start();
-
-// Kiểm tra xem có phiên đăng nhập không
-if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
-    $isLogged = true;
-} else {
-    $isLogged = false;
-}
-?>
-
-
-
-<?php
+  session_start();
+  $prices=$_REQUEST['price'];
+  $os=$_REQUEST['os'];
+  
+  // echo $prices;
+  // Kiểm tra xem có phiên đăng nhập không
+  if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
+      $isLogged = true;
+  } else {
+      $isLogged = false;
+  }
   // Kiểm tra xem $_REQUEST['searchKey'] có tồn tại không
   $searchKey = isset($_REQUEST['searchKey']) ? $_REQUEST['searchKey'] : ''; 
   include "./php/API.php";
   $p = new docAPI;
   $results = $p->getByUrl("http://localhost:8080/CNMProject/CongNgheMoi/php/getProducts.php");
+  if (isset($os) && isset($prices)){
+    $results=$p->getByUrl("http://localhost:8080/CNMProject/CongNgheMoi/php/getProducts.php?os=". $os ."&price=". $prices);
+  }
+  // echo $results;
+  // if (isset($_SESSION['user_id'])){
+
+  //   echo $_SESSION['user_id'];
+  // }else {
+  //   echo "Chưa đăng nhập";
+  // }
   ?>
 <!doctype html>
 <html lang="en">
@@ -84,7 +92,8 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
         <a href=""></a>
         <?php
         $searchKey= $_REQUEST['searchKey'];
-        if(!isset($searchKey)){
+
+        if(!isset($searchKey)|| (!isset($os)&& !isset($prices))){
           $count = 0; // Biến đếm số lượng card đã được hiển thị trong mỗi dòng
           foreach($results as $data) {
               // Kiểm tra nếu biến đếm đạt đến 3, bắt đầu một hàng mới
@@ -110,16 +119,16 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
                   echo '</div>'; // Đóng hàng
               }
           }
-        }else{
+        }else
+        
+        
+        
+        
+        {
           $flag=false;
           $count = 0; // Biến đếm số lượng card đã được hiển thị trong mỗi dòng
           foreach($results as $data) {
-            // echo gettype($data->brand);
-            // echo gettype($searchKey);
-            // echo ($searchKey .'<br>'); 
-            // echo ($data->brand .'<br>');
-            // Kiểm tra nếu biến đếm đạt đến 3, bắt đầu một hàng mới
-              $price=$data->price;
+            $price=$data->price;
             $formatted_price = number_format($price, 0, ',', '.');
             if (strpos( strtoupper($data->model),strtoupper($searchKey)) !==false || strpos(strtoupper($data->brand),strtoupper($searchKey))!== false) {
             // if($data->model.indexOf($searchKey)!==-1){}
@@ -164,7 +173,7 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
         <button class="chat-icon"><i class="fa fa-comments" aria-hidden="true"></i></button>
       </div>
       <!-- Hộp thoại chat -->
-      <div class="chat-container">
+      <div class="chat-container chat-container1">
         <div class="chat-header">
           ChatBot
           <button class="btn-admin" onclick="toggleElements()" title="chat với nhân viên tư vấn">
@@ -178,6 +187,29 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
         <div class="message received"> Xin chào!</div>
         <div class="message received">Tôi có thể tư vấn cho bạn được không?</div>
             <!-- Nơi hiển thị tin nhắn -->
+           
+        </div>
+        <div class="question-group" id="questionGroup">
+          <button class="question" id="question" onclick="botSendMessage('question')">Bắt đầu tư vấn</button>
+        </div>
+      </div>
+
+      <!-- box2  -->
+      <div class="chat-container chat-container2">
+        <div class="chat-header">
+          ChatBot
+          <button class="btn-admin" onclick="toggleElements()" title="chat với nhân viên tư vấn">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          </button>
+          <button class="close" onclick="closeChatbox()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="chatbox" id="chatbox">
+          <div class="message received"> Xin chào!</div>
+          <div class="message received">Tôi có thể tư vấn cho bạn được không?</div>
+            <!-- Nơi hiển thị tin nhắn -->
+           
         </div>
         <div class="input-group" id ="inputGroup">
           <input type="text" class="form-control" id="messageInput" placeholder="Nhập tin nhắn..." />
@@ -185,15 +217,12 @@ if(isset($_SESSION['user']) && $_SESSION['user'] === true) {
               <button class="btn btn-primary" type="button" onclick="sendMessage()">Gửi</button>
           </div>
         </div>
-        <div class="question-group" id="questionGroup">
-          <button class="question" id="question" onclick="botSendMessage('question')">Bắt đầu tư vấn</button>
-        </div>
       </div>
         
         <!-- footer  -->
-        <script>
-          addFooter();
-        </script>
+      <script>
+        addFooter();
+      </script>
       <!-- </div> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
